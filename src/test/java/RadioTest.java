@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.security.PublicKey;
+
 public class RadioTest {
 //Station
     @Test
@@ -70,7 +72,7 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
     @Test
-    public void switcthStationNext(){
+    public void switcthStationNextInRage(){
         Radio radio = new Radio();
         radio.setCurrentStation(5);
         radio.increaseStation();
@@ -79,7 +81,7 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
     @Test
-    public void switcthStationPrev(){
+    public void switcthStationPrevInRange(){
         Radio radio = new Radio();
         radio.setCurrentStation(5);
         radio.decreaseStation();
@@ -87,6 +89,22 @@ public class RadioTest {
         int actual = radio.getCurrentStation();
         Assertions.assertEquals(expected, actual);
     }
-
-
+    @Test
+    public void switchStationNextMoreRenge(){
+        Radio radio = new Radio();
+        radio.setCurrentStation(10);
+        radio.increaseStation();
+        int expected = 0;
+        int actual = radio.getCurrentStation();
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void switcthStationPrevLessRange(){
+        Radio radio = new Radio();
+        radio.setCurrentStation(0);
+        radio.decreaseStation();
+        int expected = 9;
+        int actual = radio.getCurrentStation();
+        Assertions.assertEquals(expected, actual);
+    }
 }
