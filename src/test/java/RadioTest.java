@@ -1,8 +1,6 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.security.PublicKey;
-
 public class RadioTest {
 //Station
     @Test
@@ -54,7 +52,7 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
     @Test
-    public void switchVolumeNext(){
+    public void switchVolumeNextInRage(){
         Radio radio = new Radio();
         radio.setCurrentVolume(8);
         radio.increaseVolume();
@@ -63,13 +61,31 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
     @Test
-    public void switchVolumePrev(){
+    public void switchVolumePrevInRange(){
         Radio radio = new Radio();
         radio.setCurrentVolume(8);
         radio.decreaseVolume();
         int expected = 7;
         int actual = radio.getCurrentVolume();
         Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void switchVolumeNextMoreRange(){
+        Radio radio = new Radio();
+        radio.setCurrentVolume(10);
+        radio.increaseVolume();
+        int expected = 10;
+        int actual = radio.getCurrentVolume();
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void switchVolumePrevLessRange(){
+        Radio radio = new Radio();
+        radio.setCurrentVolume(-1);
+        radio.decreaseVolume();
+        int expected = 0;
+        int actual = radio.getCurrentVolume();
+        Assertions.assertEquals(expected,actual);
     }
     @Test
     public void switcthStationNextInRage(){
@@ -92,7 +108,7 @@ public class RadioTest {
     @Test
     public void switchStationNextMoreRenge(){
         Radio radio = new Radio();
-        radio.setCurrentStation(10);
+        radio.setCurrentStation(9);
         radio.increaseStation();
         int expected = 0;
         int actual = radio.getCurrentStation();
